@@ -17,7 +17,7 @@ public class ClearListener implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
         for(int i=0; i<labels.length; i++){
-            labels[i].setBackground(null);
+            labels[i].(new Color(238,238,238));
         }
     }
 }
