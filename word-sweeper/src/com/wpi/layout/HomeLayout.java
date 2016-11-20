@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import com.wpi.listener.CreateGameListener;
+import com.wpi.listener.JoinGameListener;
 import com.wpi.listener.PracticeGameListener;
 
 import com.wpi.models.Model;
@@ -23,6 +25,8 @@ public class HomeLayout {
     private JButton joinGameButton;
     private JButton pracGameButton;
     private JLabel label;
+    private String password;
+    private String name;
     
     public final Model model;
 	ServerAccess serverAccess;
@@ -35,16 +39,6 @@ public class HomeLayout {
         joinGameButton = new JButton();
         pracGameButton = new JButton();
         label = new JLabel();
-        newGameButton.addActionListener(new ActionListener() {
-    		public void actionPerformed(ActionEvent e) {
-    			new CreateGameController(HomeLayout.this, model).process();
-    		}
-    	});
-        joinGameButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new JoinGameController(HomeLayout.this, model).process();
-			}
-		});
     }
     
     public void setLayout(){
@@ -75,8 +69,15 @@ public class HomeLayout {
     
     public void addListener(){
         this.pracGameButton.addActionListener(new PracticeGameListener(this.frame));
+        this.newGameButton.addActionListener(new CreateGameListener(this.frame));
+        this.joinGameButton.addActionListener(new JoinGameListener(this.frame));
     }
-    
+    public String getPassword(){
+    	return password;
+    }
+    public String getName(){
+    	return name;
+    }
     public void setServerAccess(ServerAccess access) {
 		this.serverAccess = access;
 	}

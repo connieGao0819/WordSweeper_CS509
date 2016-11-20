@@ -13,7 +13,7 @@ public class RandomLetter {
         String[] letterArray = new String[len];
         Random random = new Random();
         for(int i=0; i<len; i++){
-            letterArray[i] = LETTER_SET[random.nextInt (26)];
+            letterArray[i] = LETTER_SET[random.nextInt(26)];
         }
         return letterArray;
     }

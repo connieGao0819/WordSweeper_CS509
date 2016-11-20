@@ -1,5 +1,6 @@
 package com.wpi.listener;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,7 +18,7 @@ public class ClearListener implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
         for(int i=0; i<labels.length; i++){
-            labels[i].(new Color(238,238,238));
+            labels[i].setBackground(new Color(238,238,238));
         }
     }
 }

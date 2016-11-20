@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
-import com.wpi.layout.GameLayout;
+import com.wpi.layout.PracGameLayout;
 
 public class PracticeGameListener implements ActionListener{
 
@@ -17,7 +17,7 @@ public class PracticeGameListener implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
-        GameLayout gameLayout = new GameLayout();
+        PracGameLayout gameLayout = new PracGameLayout();
         gameLayout.setLayout();
         gameLayout.addListener();
         frame.setVisible(false);

@@ -6,7 +6,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JLabel;
 
-import com.wpi.layout.GameLayout;
+import com.wpi.layout.PracGameLayout;
 
 public class MouseMoveListener implements MouseListener{
     
@@ -24,8 +24,9 @@ public class MouseMoveListener implements MouseListener{
     @Override
     public void mousePressed(MouseEvent e) {
         // TODO Auto-generated method stub
-        GameLayout.ISPRESSED = true;
+        PracGameLayout.ISPRESSED = true;
 //        System.out.println(this.press);
+        System.out.println(this.label.getBackground());
         this.label.setBackground(Color.gray);
     }
 
@@ -33,14 +34,14 @@ public class MouseMoveListener implements MouseListener{
     public void mouseReleased(MouseEvent e) {
         // TODO Auto-generated method stub
 //        System.out.println(this.press);
-        GameLayout.ISPRESSED = false;
+        PracGameLayout.ISPRESSED = false;
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
         // TODO Auto-generated method stub
 //        System.out.println(this.press);
-        if(GameLayout.ISPRESSED)
+        if(PracGameLayout.ISPRESSED)
             this.label.setBackground(Color.gray);
     }
 
