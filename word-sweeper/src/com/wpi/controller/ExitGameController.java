@@ -16,7 +16,7 @@ public class ExitGameController {
 
 	/** Make the request on the server and wait for response. */
 	public void process() {
-		String xmlString = Message.requestHeader() + "<exitGameRequest name='%s' gameID='%s'/></request>";
+		String xmlString = Message.requestHeader() + String.format("<exitGameRequest name='%s' gameID='%s'/></request>", model.getPlayer().getName(),model.getGame().getGameID());
 		Message m = new Message (xmlString);
 		
 		// Request the lock (this might not succeed).

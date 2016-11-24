@@ -5,29 +5,29 @@ import com.wpi.xml.Message;
 import com.wpi.models.Model;
 import com.wpi.layout.HomeLayout;
 
-public class CreateGameController {
+public class JoinGameRequestController {
 
 	HomeLayout app;
 	Model model;
 
-	public CreateGameController(HomeLayout app, Model model) {
+	public JoinGameRequestController(HomeLayout app, Model model) {
 		this.app = app;
 		this.model = model;
 	}
 
 	/** Make the request on the server and wait for response. */
 	public void process() {
+		// send the request to create the game.
 		String xmlString;
 		if(this.app.getPassword() == null){
-			xmlString = Message.requestHeader() + String.format("<createGameRequest name='%s'></request>", this.app.getName());		
+			xmlString = Message.requestHeader() + String.format("<joinGameRequest gameId='%s' name='%s'/></request>", model.getGame().getGameID(), app.getName());
 		}else{
-			xmlString = Message.requestHeader() + String.format("<createGameRequest name='%s' password='%s'/></request>", this.app.getName(), this.app.getPassword());
+			xmlString = Message.requestHeader() + String.format("<joinGameRequest gameId='%s' name='%s' password='%s'/></request>",model.getGame().getGameID(), app.getName(),app.getPassword());
 		}
-		
+
 		Message m = new Message (xmlString);
+
 		// Request the lock (this might not succeed).
-		//app.getRequestArea().append(m.toString());
-		//app.getRequestArea().append("\n");
 		app.getServerAccess().sendRequest(m);
 	}
 }
