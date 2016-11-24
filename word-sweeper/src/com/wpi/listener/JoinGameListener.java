@@ -5,12 +5,17 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
-import com.wpi.layout.JoinGameLayout;
-import com.wpi.layout.PracGameLayout;
+import com.wpi.controller.JoinGameRequestController;
+import com.wpi.layout.GameLayout;
+import com.wpi.layout.HomeLayout;
+import com.wpi.models.Model;
+
 
 public class JoinGameListener implements ActionListener{
 
     private JFrame frame;
+    private HomeLayout app;
+    private Model model;
     
     public JoinGameListener(JFrame frame){
         this.frame = frame;
@@ -18,10 +23,12 @@ public class JoinGameListener implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
-        JoinGameLayout gameLayout = new JoinGameLayout();
+        GameLayout gameLayout = new GameLayout();
         gameLayout.setLayout();
         gameLayout.addListener();
+        gameLayout.playerSpecial();
         frame.setVisible(false);
+        new JoinGameRequestController(app, model).process();
     }
 
 }

@@ -25,7 +25,7 @@ public class MouseMoveListener implements MouseListener{
     public void mousePressed(MouseEvent e) {
         // TODO Auto-generated method stub
         PracGameLayout.ISPRESSED = true;
-//        System.out.println(this.press);
+       // System.out.println(this.press);
         System.out.println(this.label.getBackground());
         this.label.setBackground(Color.gray);
     }
@@ -33,14 +33,14 @@ public class MouseMoveListener implements MouseListener{
     @Override
     public void mouseReleased(MouseEvent e) {
         // TODO Auto-generated method stub
-//        System.out.println(this.press);
+       // System.out.println(this.press);
         PracGameLayout.ISPRESSED = false;
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
         // TODO Auto-generated method stub
-//        System.out.println(this.press);
+        //System.out.println(this.press);
         if(PracGameLayout.ISPRESSED)
             this.label.setBackground(Color.gray);
     }
