@@ -4,18 +4,26 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
+import com.wpi.client_src.ServerAccess;
+import com.wpi.controller.LockGameRequestController;
+import com.wpi.controller.ResetGameRequestController;
 import com.wpi.listener.ClearListener;
 import com.wpi.listener.ExitListener;
 import com.wpi.listener.MouseMoveListener;
+import com.wpi.listener.QuitListener;
 import com.wpi.listener.ResetListener;
+import com.wpi.models.Model;
 import com.wpi.service.RandomLetter;
 
 public class GameLayout {
@@ -23,85 +31,217 @@ public class GameLayout {
     private JPanel panel = null;
     private JButton resetButton = null;
     private JButton clearButton = null;
-    private JButton exitButton = null;
-    private JLabel label = null;
+    private JButton quitButton = null;
+    private JButton submitButton = null;
+    private JButton lockButton = null;
+    private JButton upButton = null;
+    private JButton downButton = null;
+    private JButton leftButton = null;
+    private JButton rightButton = null;
+    
+    private JLabel titleLabel = null;
     private JLabel[] letterLabel = null;
-    private RandomLetter randomLetter = null;
+	private JLabel myScoreLabel;
+	private JLabel myScore;
+	private JLabel gameIDLabel;
+	private JLabel playersNamesLabel;
+	private JLabel playersScoresLabel;
+	private JLabel lockedLabel;
+	
+	 private JTextArea playersInfoArea;
+    //private RandomLetter randomLetter = null;
+    ServerAccess serverAccess;
+    
+    private Model model;
+    
+    GameLayout gamelayout;
     
     
     private MouseMoveListener mouseListener = null;
-    private ExitListener exitListener = null;
+    private QuitListener quitListener = null;
     private ClearListener clearListener = null;
     private ResetListener resetListener = null;
+    //private LockListener lockListener = null;
+    //private SubmitListener submitListener = null;
+   
     
     public static boolean ISPRESSED = false;
     
     
     public GameLayout(){
         frame = new JFrame();
-        panel = new JPanel(new GridLayout(4,4,0,0));
+        panel = new JPanel(new GridLayout(4,4,2,2));
         resetButton = new JButton();
         clearButton = new JButton();
-        exitButton = new JButton();
-        label = new JLabel();
+        quitButton = new JButton();
+        submitButton = new JButton();
+        lockButton = new JButton();
+        titleLabel = new JLabel();
         letterLabel = new JLabel[16];
-        randomLetter = new RandomLetter();
+        gameIDLabel = new JLabel();
+        playersInfoArea = new JTextArea();
+        myScoreLabel = new JLabel();
+        playersNamesLabel = new JLabel();
+        playersScoresLabel = new JLabel();
+        myScore = new JLabel();
+        lockedLabel = new JLabel();
+        upButton = new JButton();
+        downButton = new JButton();
+        leftButton = new JButton();
+        rightButton = new JButton();
+        
+        
+        
+        //randomLetter = new RandomLetter();
         for(int i=0; i<16; i++){
             letterLabel[i] = new JLabel();
-            letterLabel[i].setText("A");
+            //letterLabel[i].setText("A");
         }
         
-        exitListener = new ExitListener();
+        quitListener = new QuitListener(frame);
         clearListener = new ClearListener(letterLabel);
         resetListener = new ResetListener(letterLabel);
+        //submitListener = new SubmitListener();
+        //lockListener = new LockListener();
         
     }
     
     public void setLayout(){
-        int width = 500, height = 300;
+        int width = 650, height = 400;
         int x = 100, y = 100;
-        String[] letters = this.randomLetter.getRandomLetter(letterLabel.length);
+        //String[] letters = this.randomLetter.getRandomLetter(letterLabel.length);
         x = (Toolkit.getDefaultToolkit().getScreenSize().width - width) / 2;
         y = (Toolkit.getDefaultToolkit().getScreenSize().height - height) / 2;
         frame.setTitle("Word Sweeper");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(x, y, width, height);
         frame.setLayout(null);
-        label.setText("Word Sweeper");
-        label.setForeground(Color.BLACK);
-        label.setFont(new Font("Lucida Bright", Font.BOLD | Font.ITALIC, 20));
-        label.setBounds(180, 0, 250, 80);
+        titleLabel.setText("Word Sweeper");
+        titleLabel.setForeground(Color.BLACK);
+        titleLabel.setFont(new Font("Lucida Bright", Font.BOLD | Font.ITALIC, 20));
+        titleLabel.setBounds(180, 0, 250, 80);
         panel.setBounds(50, 60, 180, 180);
-        resetButton.setBounds(310, 80, 100, 30);
+        resetButton.setBounds(280, 80, 100, 30);
         resetButton.setText("RESET");
-        clearButton.setBounds(310, 135, 100, 30);
+        clearButton.setBounds(280, 135, 100, 30);
         clearButton.setText("CLEAR");
-        exitButton.setBounds(310, 190, 100, 30);
-        exitButton.setText("EXIT");
+        quitButton.setBounds(280, 245, 100, 30);
+        quitButton.setText("QUIT");
+        submitButton.setText("SUBMIT");
+        submitButton.setBounds(90, 245, 100, 30);
+        lockButton.setText("LOCK");
+        lockButton.setBounds(280, 190, 100, 30);
+        lockedLabel.setBounds(500, 55, 50, 28);
+        gameIDLabel.setText("");
+        gameIDLabel.setBounds(500, 20, 65, 28);
+        myScoreLabel = new JLabel("My Score:");
+		myScoreLabel.setBounds(400, 75, 65, 28);
+		myScore = new JLabel("0");
+		myScore.setBounds(480, 80, 120, 21);
+		myScore.setFont(new Font("Tahoma", Font.BOLD, 14));
+		playersNamesLabel.setText("name");
+		playersNamesLabel.setBounds(420, 110, 50, 28);
+		playersScoresLabel.setText("Score");
+		playersScoresLabel.setBounds(520, 110, 50, 28);
+		upButton.setText("UP");
+		upButton.setBounds(120, 280, 50, 30);
+		downButton.setText("DOWN");
+		downButton.setBounds(110, 320, 70, 30);
+		leftButton.setText("LEFT");
+		leftButton.setBounds(30, 300, 70, 30);
+		rightButton.setText("RIGHT");
+		rightButton.setBounds(200, 300, 80, 30);
+		
+		//playersInfoArea.setText(model.getGame().getPlayersListByScore());
+        
+        
+        
         /**add label**/
         for(int i=0; i < 16; i++){
-            letterLabel[i].setText(letters[i]);
+            //letterLabel[i].setText(letters[i]);
             letterLabel[i].setBorder(BorderFactory.createLineBorder(Color.black));
-            letterLabel[i].setHorizontalAlignment(SwingConstants.CENTER);
-            letterLabel[i].setOpaque(true);
+            //letterLabel[i].setHorizontalAlignment(SwingConstants.CENTER);
+            //letterLabel[i].setOpaque(true);
             panel.add(letterLabel[i]);
         }
-        frame.add(label);
+        
+        frame.add(rightButton);
+        frame.add(leftButton);
+        frame.add(downButton);
+        frame.add(upButton);
+        frame.add(playersScoresLabel);
+        frame.add(playersNamesLabel);
+        frame.add(myScore);
+        frame.add(myScoreLabel);
+        frame.add(gameIDLabel);
+        frame.add(titleLabel);
         frame.add(panel);
         frame.add(resetButton);
         frame.add(clearButton);
-        frame.add(exitButton);
+        frame.add(quitButton);
+        frame.add(submitButton);
+        frame.add(lockButton);
         frame.setVisible(true);
     }
     
+    public void playerSpecial(){
+    	resetButton.setVisible(false);
+    	lockButton.setVisible(false);
+    	
+    }
+    /*public void updateGameInfoBoard() {
+		gameIDLabel.setText(model.getGame().getGameID());
+		myScore.setText(String.valueOf(model.getPlayer().getScore()));
+		playersInfoArea.setText(model.getGame().getPlayersListByName());
+		administratorNameLabel.setText(model.getGame().getManagingUser());
+		if ( model.getGame().getManagingUser().equals(model.getPlayer().getName())) {// model.getPlayer().isManager()
+			lockButton.setEnabled(true);
+			resetButton.setEnabled(true);
+			resetButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					//gameLockResetLabel.setText("Game has been RESET!");
+					new ResetGameRequestController(gamelayout, model).process();
+					// updateGameInfoBoard();
+					resetButton.setEnabled(false);
+					resetButton.setEnabled(true);
+				}
+			});
+
+			lockButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					//gameLockResetLabel.setText("Game has been Locked!");
+					new LockGameRequestController(gamelayout, model).process();
+					lockButton.setEnabled(false);
+				}
+			});
+
+		}
+
+		if (model.getGame().isLocked()) {
+			lockedLabel.setText("Locked!");;
+			lockButton.setEnabled(false);
+		}
+    }*/
+    
+  
     
     public void addListener(){
         for(int i=0; i<letterLabel.length; i++){
             mouseListener = new MouseMoveListener(letterLabel[i]);
             letterLabel[i].addMouseListener(mouseListener);
         }
-        exitButton.addActionListener(exitListener);
+        
+        
+        quitButton.addActionListener(quitListener);
         resetButton.addActionListener(resetListener);
         clearButton.addActionListener(clearListener);
+        //lockButton.addActionListener(lockListener);
+        //submitButton.addActionListener(submitListener);
     }
+	public void getServerAccess(ServerAccess access) {
+		this.serverAccess = access;
+	}
+	public ServerAccess getServerAccess() {
+		return serverAccess;
+	}
 }
