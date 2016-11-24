@@ -54,7 +54,7 @@ public class Game {
 		this.isLocked = isLocked;
 	}
 	
-	public String getPlayersListByJoinTime(){
+	/*public String getPlayersListByJoinTime(){
 		String allPlayersList = "";
 		int i = 1;
 		for(Map.Entry<String, Integer> playerInfoSet : playersInfoMap.entrySet()){
@@ -64,7 +64,7 @@ public class Game {
 		return allPlayersList;
 	}
 	
-	/*public String getPlayersListByScore(){
+	public String getPlayersListByScore(){
 		String allPlayersInfoSortedByScore = "";
 		
 	    List<Entry<String, Integer>> allPlayersListSortedByScore = new LinkedList<>(this.playersInfoMap.entrySet());
@@ -85,7 +85,7 @@ public class Game {
 		return allPlayersInfoSortedByScore;		
 	}
 	
-	/*public String getPlayersListByName(){
+	  public String getPlayersListByName(){
 		String allPlayersInfoSortedByName = "";
 		
 	    List<Entry<String, Integer>> allPlayersListSortedByScore = new LinkedList<>(this.playersInfoMap.entrySet());
@@ -104,7 +104,7 @@ public class Game {
 	    }
 		
 		return allPlayersInfoSortedByName;		
-	}*/
+	}
 
 	public Map<String, String> getPlayersPositionMap() {
 		return playersBoardPositionMap;
@@ -112,5 +112,5 @@ public class Game {
 
 	public void setPlayersPositionMap(Map<String, String> playersPositionMap) {
 		this.playersBoardPositionMap = playersPositionMap;
-	}
+	}*/
 }
