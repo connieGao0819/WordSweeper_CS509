@@ -13,44 +13,40 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import com.wpi.client.model.ServerAccess;
 import com.wpi.listener.CreateGameListener;
+import com.wpi.listener.CreateListener;
 import com.wpi.listener.JoinGameListener;
+import com.wpi.listener.JoinListener;
 import com.wpi.listener.MouseMoveListener;
 import com.wpi.listener.PracticeGameListener;
 
 import com.wpi.models.Model;
-import com.wpi.client_src.ServerAccess;
-import com.wpi.controller.CreateGameController;
-import com.wpi.controller.JoinGameRequestController;
 
 public class HomeLayout {
-    private JFrame frame;
+    public JFrame frame;
     private JButton newGameButton;
     private JButton joinGameButton;
     private JButton pracGameButton;
     private JLabel titleLabel;
-    private String password;
-    private String name;
-    private String gameID;
-    private JLabel nameLabel;
-    private JLabel passwordLabel;
-    private JLabel gameIDLabel;
-    private JTextField passwordField;
-    private JTextField nameField;
-    private JTextField gameIDField;
+    public JLabel nameLabel;
+    public JLabel passwordLabel;
+    public JLabel gameIDLabel;
+    public JPasswordField passwordField;
+    public JTextField nameField;
+    public JTextField gameIDField;
     private JLabel label;
-    private JButton createButton;
-    private JButton joinButton;
+    public JButton createButton;
+    public JButton joinButton;
     
-    public final Model model;
-	ServerAccess serverAccess;
+
     
     
-    public HomeLayout(Model model){
-    	this.model = model;
+    public HomeLayout(){
         frame = new JFrame();
         newGameButton = new JButton();
         joinGameButton = new JButton();
@@ -59,7 +55,7 @@ public class HomeLayout {
         nameLabel = new JLabel();
         passwordLabel = new JLabel();
         gameIDLabel = new JLabel();
-        passwordField = new JTextField();
+        passwordField = new JPasswordField();
         nameField = new JTextField();
         gameIDField = new JTextField();
         createButton = new JButton();
@@ -86,33 +82,10 @@ public class HomeLayout {
         titleLabel.setBounds(100, 0, 300, 80);
         newGameButton.setText("CREATE GAME");
         newGameButton.setBounds(60, 100, 140, 30);
-        newGameButton.addMouseListener(new MouseMoveListener(label){		
-			public void mousePressed(MouseEvent e) {			
-				nameLabel.setVisible(true);
-				passwordLabel.setVisible(true);
-				nameField.setVisible(true);
-				passwordField.setVisible(true);
-				createButton.setVisible(true);
-				gameIDLabel.setVisible(false);
-				gameIDField.setVisible(false);
-				joinButton.setVisible(false);
-			}
-		});
 
         joinGameButton.setText("JOIN GAME");
         joinGameButton.setBounds(60, 150, 140, 30);
-        joinGameButton.addMouseListener(new MouseMoveListener(label){		
-			public void mousePressed(MouseEvent e) {			
-				gameIDLabel.setVisible(true);
-				passwordLabel.setVisible(true);
-				gameIDField.setVisible(true);
-				passwordField.setVisible(true);
-				joinButton.setVisible(true);
-			    nameLabel.setVisible(true);
-			    nameField.setVisible(true);
-			    createButton.setVisible(false);
-			}
-		});
+
         pracGameButton.setText("PRACTICE GAME");
         pracGameButton.setBounds(60, 200, 140, 30);
         nameLabel.setText("USER NAME:");
@@ -136,59 +109,11 @@ public class HomeLayout {
         createButton.setText("CREATE");
         createButton.setBounds(320, 250, 80, 30);
         createButton.setVisible(false);
-        createButton.addMouseListener(new MouseMoveListener(label){
-        	public boolean noName(){
-				name = nameField.getText();
-				if(name.length() == 0){
-					JOptionPane.showMessageDialog(frame, "name cannot be empty", "Warning", JOptionPane.WARNING_MESSAGE);
-					nameField.requestFocus();
-					
-					return true;
-				}
-				return false;
-        }
-        	public void mousePressed(MouseEvent e) {			
-				if(!noName()){
-					createButton.addActionListener(new CreateGameListener(frame));
-					//new CreateGameController(HomeLayout.this, model).process();
-					//HomeLayout.this.disableInputs();
-				}
-			}
-        });
-
-	
 
         joinButton.setText("JOIN");
         joinButton.setBounds(320, 250, 80, 30);
         joinButton.setVisible(false);
-        joinButton.addMouseListener(new MouseMoveListener(label){
-        public boolean noNameGameID(){
-			name = nameField.getText();
-			gameID = gameIDField.getText();
-			if(name.length() == 0){
-				JOptionPane.showMessageDialog(frame, "name cannot be empty", "Warning", JOptionPane.WARNING_MESSAGE);
-				nameField.requestFocus();
-				
-				return true;
-			}else if(gameID.length() == 0){
-				JOptionPane.showMessageDialog(frame, "Game ID cannot be empty", "Warning", JOptionPane.WARNING_MESSAGE);
-				nameField.requestFocus();
-				return true;
-			}
-			return false;
-    }
-    	public void mousePressed(MouseEvent e) {			
-			if(!noNameGameID()){
-				joinButton.addActionListener(new JoinGameListener(frame));
-				//new CreateGameController(HomeLayout.this, model).process();
-				//HomeLayout.this.disableInputs();
-			}
-		}
-    });
-
-        
-        
-        
+   
         frame.add(nameLabel);
         frame.add(gameIDLabel);
         frame.add(passwordLabel);
@@ -206,23 +131,10 @@ public class HomeLayout {
     
     public void addListener(){
         this.pracGameButton.addActionListener(new PracticeGameListener(this.frame));
-        this.createButton.addActionListener(new CreateGameListener(this.frame));
-        this.joinButton.addActionListener(new JoinGameListener(this.frame));
+        this.newGameButton.addActionListener(new CreateGameListener(this));
+        this.joinGameButton.addActionListener(new JoinGameListener(this));
+        this.joinButton.addActionListener(new JoinListener(this));
+        this.createButton.addActionListener(new CreateListener(this));
     }
-    public String getPassword(){
-    	return password;
-    }
-    public String getName(){
-    	return name;
-    }
-    public String getGameID(){
-    	return gameID;
-    }
-    public void setServerAccess(ServerAccess access) {
-		this.serverAccess = access;
-	}
-	
-	public ServerAccess getServerAccess() {
-		return serverAccess;
-	}
+
 }

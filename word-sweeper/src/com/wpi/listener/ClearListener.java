@@ -6,19 +6,21 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 
+import com.wpi.layout.CellLabel;
+import com.wpi.models.Model;
+
 public class ClearListener implements ActionListener{
     
-    private JLabel[] labels;
+//    private CellLabel[] labels;
     
-    public ClearListener(JLabel[] labels){
-        this.labels=labels;
+    public ClearListener(){
+//        this.label=labels;
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
-        for(int i=0; i<labels.length; i++){
-            labels[i].setBackground(new Color(238,238,238));
-        }
+    	Model.gameLayout.setCellLabel();
+    	Model.BOARD.clearChosenCells();
     }
 }
