@@ -6,15 +6,25 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JLabel;
 
-import com.wpi.layout.PracGameLayout;
-
+import com.wpi.layout.CellLabel;
+import com.wpi.layout.GameLayout;
+import com.wpi.layout.PracticeLayout;
+import com.wpi.models.Model;
+/**
+ * The operation and the function of the operation of the mouse.
+ * @author haozhezhang
+ *
+ */
 public class MouseMoveListener implements MouseListener{
     
-    private JLabel label = null;
+    private CellLabel label = null;
+    private GameLayout game = null;
     
-    public MouseMoveListener(JLabel label){
+    public MouseMoveListener(CellLabel label, GameLayout game){
         this.label = label;
+        this.game = game;
     }
+    
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -24,25 +34,27 @@ public class MouseMoveListener implements MouseListener{
     @Override
     public void mousePressed(MouseEvent e) {
         // TODO Auto-generated method stub
-        PracGameLayout.ISPRESSED = true;
-       // System.out.println(this.press);
-        System.out.println(this.label.getBackground());
+        PracticeLayout.ISPRESSED = true;
         this.label.setBackground(Color.gray);
+        Model.BOARD.getChosenCells().add(this.label.getCell());
+        game.getMyScore().setText(String.valueOf(Model.BOARD.getChosenLettersScore()));
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
         // TODO Auto-generated method stub
-       // System.out.println(this.press);
-        PracGameLayout.ISPRESSED = false;
+        PracticeLayout.ISPRESSED = false;
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
         // TODO Auto-generated method stub
-        //System.out.println(this.press);
-        if(PracGameLayout.ISPRESSED)
+      
+        if(PracticeLayout.ISPRESSED){
             this.label.setBackground(Color.gray);
+            Model.BOARD.getChosenCells().add(this.label.getCell());
+            game.getMyScore().setText(String.valueOf(Model.BOARD.getChosenLettersScore()));
+        }
     }
 
     @Override

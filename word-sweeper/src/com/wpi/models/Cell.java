@@ -1,60 +1,64 @@
 package com.wpi.models;
+/**
+ * Cell entity class, which contains all the info and functions about the cell.  
+ * 
+ * @author Haozhe Zhang,Jiani Gao
+ *
+ */
 
 public class Cell {
-
-	public void setLocalRow(int i) {
-		// TODO Auto-generated method stub
-		
+	
+	private String letter;
+	private Integer score;
+	private boolean chosen;
+	private boolean repetition;
+	private Integer row;
+	private Integer col;
+	private boolean bonus;
+	
+	public boolean isBonus() {
+		return bonus;
 	}
-
-	public void setLocalCol(int j) {
-		// TODO Auto-generated method stub
-		
+	public void setBonus(boolean bonus) {
+		this.bonus = bonus;
 	}
-
-	public void setGlobalRow(int i) {
-		// TODO Auto-generated method stub
-		
+	public boolean isRepetition() {
+		return repetition;
 	}
-
-	public void setGlobalCol(int i) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public int getLocalCol() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public int getLocalRow() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public void setLetter(String string) {
-		// TODO Auto-generated method stub
-		
+	public void setRepetition(boolean repetition) {
+		this.repetition = repetition;
 	}
 
 	public String getLetter() {
-		// TODO Auto-generated method stub
-		return null;
+		return letter;
 	}
-
-	public char[] getGlobalCol() {
-		// TODO Auto-generated method stub
-		return null;
+	public void setLetter(String letter) {
+		this.letter = letter;
 	}
-
-	public char[] getGlobalRow() {
-		// TODO Auto-generated method stub
-		return null;
+	public Integer getScore() {
+		return score;
 	}
-
-	public void setAsChosen() {
-		// TODO Auto-generated method stub
-		
+	public void setScore(Integer score) {
+		this.score = score;
 	}
+	public boolean isChosen() {
+		return chosen;
+	}
+	public void setChosen(boolean chosen) {
+		this.chosen = chosen;
+	}
+	public Integer getRow() {
+		return row;
+	}
+	public void setRow(Integer row) {
+		this.row = row;
+	}
+	public Integer getCol() {
+		return col;
+	}
+	public void setCol(Integer col) {
+		this.col = col;
+	}
+	
 
 }

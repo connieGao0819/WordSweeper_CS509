@@ -10,7 +10,7 @@ import com.wpi.xml.Message;
  * The {@link #process()} makes an exitGameRequest in XML format, and send it to
  * the server.
  * 
- * @author HanBao
+ * @author Jiani Gao,Haozhe Zhang
  *
  */
 public class ExitGameController {
@@ -27,5 +27,6 @@ public class ExitGameController {
 
 		Message m = new Message(xmlString);
 		Model.serverAccess.sendRequest(m);
+		System.exit(0);
 	}
 }

@@ -4,7 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
-
+/**
+ * When press the button exit, exit the game. 
+ * @author haozhezhang
+ *
+ */
 public class ExitListener implements ActionListener{
 
     @Override

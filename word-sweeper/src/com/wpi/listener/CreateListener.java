@@ -16,7 +16,11 @@ import com.wpi.models.Model;
 import com.wpi.models.Player;
 import com.wpi.service.CellsService;
 import com.wpi.service.CreateService;
-
+/**
+ * When press the button create, jump into this part and get the player name and password. 
+ * @author haozhezhang
+ *
+ */
 public class CreateListener implements ActionListener{
 
 	private HomeLayout layout;

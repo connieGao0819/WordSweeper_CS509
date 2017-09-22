@@ -4,7 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.wpi.util.WordTable;
-
+/**
+ * Calculate the score of the words and letter.
+ * @author haozhezhang
+ *
+ */
 public class CalculateLocalScore {
 	public static Integer calculateLetterScore(String letter){
 		Integer score;

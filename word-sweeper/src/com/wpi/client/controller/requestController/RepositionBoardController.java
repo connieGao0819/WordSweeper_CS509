@@ -10,7 +10,7 @@ import com.wpi.xml.Message;
  * The {@link #process()} makes a repositionBoardRequest in XML format, and send
  * it to the server.
  * 
- * @author HanBao
+ * @author Jiani Gao,Haozhe Zhang
  *
  */
 public class RepositionBoardController {

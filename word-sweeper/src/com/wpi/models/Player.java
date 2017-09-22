@@ -1,12 +1,18 @@
 package com.wpi.models;
-
+/**
+ * Player entity class, which contains all the info and functions about the player.  
+ * 
+ * @author Haozhe Zhang,Jiani Gao
+ *
+ */
 public class Player {
-	 private String name;
+	 	private String name;
 	    private long score;
 	    private boolean isManager;
 	    
-		public Player(){
-			this.name = "";
+	    /**Player constructor*/
+		public Player(String name){
+			this.name = name;
 			this.score = 0;
 			this.isManager = false;
 		}
@@ -29,9 +35,10 @@ public class Player {
 		public boolean isManager() {
 			return isManager;
 		}
-		
-		public void setAsManager(){
-			this.isManager = true;
+		/**set the player as a manager player.
+		 */
+		public void setAsManager(boolean mana){
+			this.isManager = mana;
 		}
 		
 		public void resetPlayerScore(){

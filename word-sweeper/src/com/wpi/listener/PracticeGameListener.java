@@ -5,8 +5,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
-import com.wpi.layout.PracGameLayout;
-
+import com.wpi.layout.PracticeLayout;
+/**
+ * When press the button practice, practice game layout shows up. 
+ * @author haozhezhang
+ *
+ */
 public class PracticeGameListener implements ActionListener{
 
     private JFrame frame;
@@ -17,7 +21,7 @@ public class PracticeGameListener implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
-        PracGameLayout gameLayout = new PracGameLayout();
+        PracticeLayout gameLayout = new PracticeLayout();
         gameLayout.setLayout();
         gameLayout.addListener();
         frame.setVisible(false);

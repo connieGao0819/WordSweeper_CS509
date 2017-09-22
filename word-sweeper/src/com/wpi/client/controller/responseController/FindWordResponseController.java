@@ -7,7 +7,15 @@ import org.w3c.dom.Node;
 
 import com.wpi.models.Model;
 import com.wpi.xml.Message;
-
+/**
+ * An exit game response information should be received once a player is trying to exit the game.
+ * This handles the exit game response information
+ * 
+ * The {@link #process(Message)}} updates the isWaitingResponse and existedGame information in entity classes, and returns the boundary from game GUI to the login GUI.
+ * 
+ * @author haozhezhang，Jiani Gao
+ *
+ */
 
 public class FindWordResponseController extends ControllerChain {
 

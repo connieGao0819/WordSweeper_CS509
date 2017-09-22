@@ -1,61 +1,32 @@
 package com.wpi.models;
 
+import com.wpi.client.model.ServerAccess;
+import com.wpi.layout.GameLayout;
+import com.wpi.layout.HomeLayout;
+/**
+ * Model entity class, which plays a role as a manager of entity.  
+ * 
+ * @author Haozhe Zhang,Jiani Gao
+ *
+ */
 public class Model {
 		
-		private Game game;
-		private Board board;
-		private Player player;
+		public static Word WORD=new Word() ;
+		public static GameLayout gameLayout;
+		public static HomeLayout homeLayout;
+		public static Game GAME;
+		public static Board BOARD;
+		public static Player PLAYER;
+		public static ServerAccess serverAccess;
+		public static String IP = "localhost";
+		public static int PORT = 11425; 
+		public static boolean existedGame = false;
+		public static int status = 0;//1:create succ;2:create fail
+		                           //3:join succ; 4:join fail
 
 	   	
-		public Model(){
-		  this.game = new Game();
-		  this.board = new Board();
-		  this.player = new Player();
-		}
 
 
 		
-		public void updateInfo(String gameID, String managingUser, String playerName, int newStartingCol, int newStaringRow, 
-								String boardInfo, long score)
-		{
-			this.game.setGameID(gameID);
-			this.player.setName(playerName);
-			this.player.setScore(score);
-			this.game.setManagingUser(managingUser);
-			if(managingUser.equals(this.player.getName())){
-				this.player.setAsManager();
-			}
-			this.board.updateBoard(newStartingCol, newStaringRow, boardInfo);
-			this.board.setRequestColChange(0);
-			this.board.setRequestRowChange(0);
-		}
 
-		public Game getGame() {
-			return game;
-		}
-
-		public void setGame(Game game) {
-			this.game = game;
-		}
-
-		public Board getBoard() {
-			return board;
-		}
-
-		public void setBoard(Board board) {
-			this.board = board;
-		}
-
-		public Player getPlayer() {
-			return player;
-		}
-
-		public void setPlayer(Player player) {
-			this.player = player;
-		}
-		
-		public void resetGame(){
-			this.getPlayer().resetPlayerScore();
-			this.getBoard().empltyChosenCells();
-		}
 }

@@ -17,7 +17,12 @@ import com.wpi.practice.listener.ExitListener;
 import com.wpi.practice.listener.MouseMoveListener;
 import com.wpi.practice.listener.ResetListener;
 import com.wpi.service.RandomLetter;
-
+/**
+ * Practicelayout class, which contains all the info and functions about the board.  
+ * 
+ * @author Haozhe Zhang,Jiani Gao
+ *
+ */
 public class PracticeLayout {
     private JFrame frame = null;
     private JPanel panel = null;

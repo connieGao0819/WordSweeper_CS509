@@ -3,8 +3,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Iterator;
+
 public class WordTable {
-static Hashtable<String,Boolean> table;
+	static Hashtable<String,Boolean> table;
 	
 	/** Default word table. */
 	public static final String wordTable = "WordTable.sort";
@@ -18,7 +19,7 @@ static Hashtable<String,Boolean> table;
 	public static void loadWordTable() throws IOException {
 		table = new Hashtable<String,Boolean>();
 		
-		Iterator<String> it = (Iterator<String>) new StringFileIterator(new File (".", wordTable));
+		Iterator<String> it = new StringFileIterator(new File (".", wordTable));
 		while (it.hasNext()) {
 			String word = it.next();
 			word = word.trim();
@@ -40,8 +41,7 @@ static Hashtable<String,Boolean> table;
 				System.err.println("Word Table Not Yet Initialized!");
 				return false;
 			}
-		}
-		
+		}		
 		s = s.toLowerCase();
 		return table.containsKey(s);
 	}

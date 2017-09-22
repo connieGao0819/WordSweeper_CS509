@@ -32,7 +32,12 @@ import com.wpi.listener.UpListener;
 import com.wpi.models.Cell;
 import com.wpi.models.Model;
 import com.wpi.service.RandomLetter;
-
+/**
+ * Gamelayout class, which contains all the elements that shows on the game layout. 
+ * 
+ * @author Haozhe Zhang,Jiani Gao
+ *
+ */
 public class GameLayout {
     public JFrame frame = null;
     private JPanel panel = null;

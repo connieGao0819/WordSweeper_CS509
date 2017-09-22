@@ -1,4 +1,5 @@
 package com.wpi.util;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Iterator;
@@ -15,7 +16,8 @@ import java.util.Scanner;
  * @version 1.0, 6/15/08
  * @since 1.0
  */
-public class StringFileIterator {
+public class StringFileIterator implements Iterator<String> {
+
 	/** Use scanner to process file. If null, then no elements. */
 	Scanner sc;
 	

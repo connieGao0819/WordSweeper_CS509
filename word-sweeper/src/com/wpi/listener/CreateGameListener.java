@@ -8,7 +8,11 @@ import javax.swing.JFrame;
 import com.wpi.layout.GameLayout;
 import com.wpi.layout.HomeLayout;
 import com.wpi.models.Model;
-
+/**
+ * This part shows elements on the homeLayout.
+ * @author haozhezhang
+ *
+ */
 public class CreateGameListener implements ActionListener{
 
     private HomeLayout layout;

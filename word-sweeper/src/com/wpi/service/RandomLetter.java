@@ -1,7 +1,11 @@
 package com.wpi.service;
 
 import java.util.Random;
-
+/**
+ * The method of the generate of the letters.
+ * @author haozhezhang
+ *
+ */
 public class RandomLetter {
     
     private static final String[] LETTER_SET={"A",

@@ -8,6 +8,7 @@ import com.wpi.xml.Message;
  * You should follow this template when designing YOUR message handler.
  * 
  * Note: This one does nothing more than dump the XML message into the client window. Nothing that special.
+ * @author haozhezhang,Jiani Gao
  */
 public class SampleClientMessageHandler implements IMessageHandler {
 

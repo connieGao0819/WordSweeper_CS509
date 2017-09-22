@@ -8,13 +8,17 @@ import javax.swing.JLabel;
 
 import com.wpi.layout.CellLabel;
 import com.wpi.models.Model;
-
+/**
+ * This part clears the chosen cell on the board.
+ * @author haozhezhang
+ *
+ */
 public class ClearListener implements ActionListener{
     
-//    private CellLabel[] labels;
+
     
     public ClearListener(){
-//        this.label=labels;
+
     }
     
     @Override

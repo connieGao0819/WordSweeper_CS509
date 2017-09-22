@@ -20,6 +20,7 @@ import com.wpi.xml.Message;
  * Tells the client whether the model is locked or not BY SOME OTHER CLIENT.
  * This will never be returned to a client to tell him that HE has the model
  * locked (that is job of LockResponse).
+ * @author haozhezhang,Jiani Gao
  */
 public class BoardResponseController extends ControllerChain {
 
@@ -44,6 +45,7 @@ public class BoardResponseController extends ControllerChain {
 		String gameId = map.getNamedItem("gameId").getNodeValue();
 		Model.GAME.setGameID(gameId);
 		String managingUser = map.getNamedItem("managingUser").getNodeValue();
+		Model.GAME.setManager(managingUser);
 		String bonusCell = map.getNamedItem("bonus").getNodeValue();
 		if(managingUser.equals(Model.PLAYER.getName())){
 			Model.PLAYER.setAsManager(true);

@@ -7,29 +7,46 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Map.Entry;
-
+/**
+ * Game entity class, which contains all the info and functions about the game.  
+ * 
+ * @author Haozhe Zhang,Jiani Gao
+ *
+ */
 public class Game {
 	private String gameID;
-	private String administrator;
+	private String password;
 	private Map<String, Integer> playersInfoMap;
 	private Map<String, String> playersBoardPositionMap;
 	private boolean isLocked;
+	private String manager;
 	
-	public Game() {
-		gameID = "";
-		administrator = null;
-		isLocked = false;
+	/**get the manager attribute 
+	 * @return
+	 */
+	public String getManager() {
+		return manager;
+	}
+
+	public void setManager(String manager) {
+		this.manager = manager;
+	}
+
+	public Game(String password){
+		this.password = password;
 		playersInfoMap = new HashMap<String, Integer>();;
+		playersBoardPositionMap = new HashMap<String, String>();
 	}
 	
-	public Map<String, Integer> getPlayersInfoMap() {
-		return playersInfoMap;
+	public Game(String id, String password) {
+		this.password = password;
+		gameID = id;
+		playersInfoMap = new HashMap<String, Integer>();;
+		playersBoardPositionMap = new HashMap<String, String>();
 	}
-
-	public void setPlayersInfoMap(Map<String, Integer> playersInfoMap) {
-		this.playersInfoMap = playersInfoMap;
-	}
-
+	/**get the gameID attribute 
+	 * @return
+	 */
 	public String getGameID() {
 		return gameID;
 	}
@@ -37,15 +54,39 @@ public class Game {
 	public void setGameID(String gameID) {
 		this.gameID = gameID;
 	}
-
-	public String getManagingUser() {
-		return administrator;
+	/**get the password attribute 
+	 * @return
+	 */
+	public String getPassword() {
+		return password;
 	}
 
-	public void setManagingUser(String managingUser) {
-		this.administrator = managingUser;
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	/**get the playersInfoMap attribute 
+	 * @return
+	 */
+	public Map<String, Integer> getPlayersInfoMap() {
+		return playersInfoMap;
 	}
 
+	public void setPlayersInfoMap(Map<String, Integer> playersInfoMap) {
+		this.playersInfoMap = playersInfoMap;
+	}
+	/**get the playersBoardPositionMap attribute 
+	 * @return
+	 */
+	public Map<String, String> getPlayersBoardPositionMap() {
+		return playersBoardPositionMap;
+	}
+
+	public void setPlayersBoardPositionMap(Map<String, String> playersBoardPositionMap) {
+		this.playersBoardPositionMap = playersBoardPositionMap;
+	}
+	/**get the boolean of whether the game is locked
+	 * @return islocked
+	 */
 	public boolean isLocked() {
 		return isLocked;
 	}
@@ -53,64 +94,28 @@ public class Game {
 	public void setLocked(boolean isLocked) {
 		this.isLocked = isLocked;
 	}
+	/**add the player's name and score into the InfoMap.
 	
-	/*public String getPlayersListByJoinTime(){
-		String allPlayersList = "";
-		int i = 1;
-		for(Map.Entry<String, Integer> playerInfoSet : playersInfoMap.entrySet()){
-			allPlayersList += (String.format("  %s\t", String.valueOf(i++)) + playerInfoSet.getKey() + "\t  " + playerInfoSet.getValue().toString() + "\n");
-		}
-		System.out.println(allPlayersList);
-		return allPlayersList;
+	 */
+	public void addPlayerScore(String name, Integer score){
+		playersInfoMap.put(name, score);
 	}
-	
-	public String getPlayersListByScore(){
-		String allPlayersInfoSortedByScore = "";
-		
-	    List<Entry<String, Integer>> allPlayersListSortedByScore = new LinkedList<>(this.playersInfoMap.entrySet());
-	    Collections.sort(allPlayersListSortedByScore, new Comparator<Object>() {
-	        @Override
-			@SuppressWarnings("unchecked")
-	        public int compare(Object o1, Object o2) {
-	            return ((Comparable<Integer>) ((Map.Entry<String, Integer>) (o1)).getValue()).compareTo(((Map.Entry<String, Integer>) (o2)).getValue());
-	        }
-	    });
-	    
-	    for(int i = 0; i < allPlayersListSortedByScore.size(); i++){
-	    	allPlayersInfoSortedByScore += (String.format("  %s\t", String.valueOf(i+1)) + 
-	    			allPlayersListSortedByScore.get(i).getKey() + "\t  " + 
-	    			allPlayersListSortedByScore.get(i).getValue().toString() + "\n");
-	    }
-		
-		return allPlayersInfoSortedByScore;		
+	/**get the Player's score attribute 
+	 * @return
+	 */
+	public int getPlayerScore(String name){
+		return playersInfoMap.get(name);
 	}
-	
-	  public String getPlayersListByName(){
-		String allPlayersInfoSortedByName = "";
-		
-	    List<Entry<String, Integer>> allPlayersListSortedByScore = new LinkedList<>(this.playersInfoMap.entrySet());
-	    Collections.sort(allPlayersListSortedByScore, new Comparator<Object>() {
-	        @Override
-			@SuppressWarnings("unchecked")
-	        public int compare(Object o1, Object o2) {
-	            return ((Comparable<String>) ((Map.Entry<String, Integer>) (o1)).getKey()).compareTo(((Map.Entry<String, Integer>) (o2)).getKey());
-	        }
-	    });
-	    
-	    for(int i = 0; i < allPlayersListSortedByScore.size(); i++){
-	    	allPlayersInfoSortedByName += (String.format("  %s\t", String.valueOf(i+1)) + 
-	    			allPlayersListSortedByScore.get(i).getKey() + "\t  " + 
-	    			allPlayersListSortedByScore.get(i).getValue().toString() + "\n");
-	    }
-		
-		return allPlayersInfoSortedByName;		
+	/**add the player's name and position into the InfoMap.
+	 * @return
+	 */
+	public void addPlayerPosition(String name, String pos){
+		playersBoardPositionMap.put(name, pos);
 	}
-
-	public Map<String, String> getPlayersPositionMap() {
-		return playersBoardPositionMap;
+	/**get the PlayersBoardPosition attribute 
+	 * @return
+	 */
+	public String getPlayerPosition(String name){
+		return playersBoardPositionMap.get(name);
 	}
-
-	public void setPlayersPositionMap(Map<String, String> playersPositionMap) {
-		this.playersBoardPositionMap = playersPositionMap;
-	}*/
 }

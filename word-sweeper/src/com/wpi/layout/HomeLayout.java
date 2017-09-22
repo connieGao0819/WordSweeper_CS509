@@ -26,7 +26,12 @@ import com.wpi.listener.MouseMoveListener;
 import com.wpi.listener.PracticeGameListener;
 
 import com.wpi.models.Model;
-
+/**
+ * Homelayout class, which contains all the elements,info and functions on the home layout.  
+ * 
+ * @author Haozhe Zhang,Jiani Gao
+ *
+ */
 public class HomeLayout {
     public JFrame frame;
     private JButton newGameButton;

@@ -11,7 +11,11 @@ import com.wpi.layout.HomeLayout;
 import com.wpi.models.Game;
 import com.wpi.models.Model;
 import com.wpi.models.Player;
-
+/**
+ * Send the input message to the server. 
+ * @author haozhezhang
+ *
+ */
 public class JoinListener implements ActionListener {
 
 	private HomeLayout layout;

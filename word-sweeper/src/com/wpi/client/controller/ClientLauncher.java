@@ -17,10 +17,10 @@ public class ClientLauncher {
 
 
  	public static void main(String[] args) throws Exception {
- 		// FIRST thing to do is register the protocol being used. There will be a single class protocol
- 		// that will be defined and which everyone will use. For now, demonstrate with skeleton protocol.
- 		
- 		// Initialize the client application and its corresponding model
+ 		/** FIRST thing to do is register the protocol being used. There will be a single class protocol
+ 		*that will be defined and which everyone will use. For now, demonstrate with skeleton protocol.
+ 		* Initialize the client application and its corresponding model.
+ 		*/
  		if (!Message.configure("wordsweeper.xsd")) {
  			System.exit(0);
  		}

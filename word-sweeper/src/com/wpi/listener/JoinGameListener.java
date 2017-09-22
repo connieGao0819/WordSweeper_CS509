@@ -9,7 +9,11 @@ import com.wpi.layout.GameLayout;
 import com.wpi.layout.HomeLayout;
 import com.wpi.models.Model;
 
-
+/**
+ * When press the button join, jump into this part and show the place for users to input gameID,player name and password. 
+ * @author haozhezhang
+ *
+ */
 public class JoinGameListener implements ActionListener{
 
     private HomeLayout layout;
